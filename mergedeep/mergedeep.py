@@ -43,10 +43,10 @@ def _handle_merge_additive(destination, source, key):
         # Update destination if both destination and source are `Counter` type.
         destination[key].update(deepcopy(source[key]))
     elif isinstance(destination[key], float) and isinstance(source[key], float):
-        # Update destination if both destination and source are `Counter` type.
+        # Update destination if both destination and source are `float` type.
         destination[key] = destination[key] + source[key]
     elif isinstance(destination[key], int) and isinstance(source[key], int):
-        # Update destination if both destination and source are `Counter` type.
+        # Update destination if both destination and source are `int` type.
         destination[key] = destination[key] + source[key]
     else:
         _handle_merge[Strategy.REPLACE](destination, source, key)
