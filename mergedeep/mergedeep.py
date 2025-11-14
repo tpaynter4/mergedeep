@@ -85,7 +85,13 @@ def _deepmerge(dst, src, strategy=Strategy.REPLACE):
                 _deepmerge(dst[key], src[key], strategy)
             elif dst[key] is src[key]:
                 # If a key exists in both objects and the values are `same`, the value from the `dst` object will be used.
-                _handle_merge.get(strategy)(dst, src, key)
+                if isinstance(src[key], float):
+                    _handle_merge.get(strategy)(dst, src, key)
+                elif isinstance(src[key], int):
+                    _handle_merge.get(strategy)(dst, src, key)
+                else:
+                    pass
+
             else:
                 _handle_merge.get(strategy)(dst, src, key)
         else:
